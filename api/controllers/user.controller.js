@@ -8,7 +8,7 @@ export const  test = (req,res) => {
     res.json({
         message:'hello worlddd',
     });
-}
+};
 
 export const updateUser = async (req, res, next)=>{
     if(req.user.id !== req.params.id) return next(errorHandler(401, "you can only update your own account!"))
@@ -29,6 +29,18 @@ export const updateUser = async (req, res, next)=>{
         const {password, ...rest} = updateUser._doc;
 
         res.status(200).json(rest);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const deletUser = async (req, res, next)=>{
+    if(req.user.id !== req.params.id) return next(errorHandler(401,'You can only delet your own account'));
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie('access_token');
+        res.status(200).json('User has been deleted');
+        
     } catch (error) {
         next(error);
     }
