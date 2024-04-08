@@ -116,7 +116,7 @@ export default function CreateListing() {
             if(data.success === false){
                 setError(data.message)
             }
-            navigate(`/listning/${data._id}`)
+            navigate(`/listing/${data._id}`)
         } catch (error) {
             setError(error.message);
             setLoading(false);
@@ -191,8 +191,8 @@ export default function CreateListing() {
                 <p className='text-red-700 text-sm'>{imageUploadError && imageUploadError}</p>
                 {
                     formData.imageUrls.length > 0 && formData.imageUrls.map((url, index) => (
-                        <div  className="flex justify-between p-3 border items-center">
-                            <img key={url} src={url} alt="listing image" className='w-40 h-40 object-contain rounded-lg'/>
+                        <div key={url} className="flex justify-between p-3 border items-center">
+                            <img  src={url} alt="listing image" className='w-40 h-40 object-contain rounded-lg'/>
                             <button type='button' onClick={() => handleRemoveImage(index)} className='p-3 text-red-700 rounded-lg uppercase hover:opacity-75'>Delete</button>
                         </div>
                     ))
