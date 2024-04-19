@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 import {useNavigate, useParams} from 'react-router-dom'
 
 export default function CreateListing() {
-    const {currentUser} = useSelector(state => state.user);
-    const [files, setFiles] = useState([]);
+    const {currentUser} = useSelector(state => state.user);   
     const navigate = useNavigate();
     const params = useParams();
+    const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         imageUrls: [], 
         name: '',
@@ -33,12 +33,13 @@ export default function CreateListing() {
             const listingId = params.listingId;
             const res = await fetch(`/api/listing/get/${listingId}`);
             const data = await res.json();
-            setFormData(data);
+           
 
             if(data.success === false){
                 console.log(data.message);
                 return;
             }
+            setFormData(data);
         }
         fetchListing();
     }, []);
@@ -123,7 +124,10 @@ export default function CreateListing() {
                 headers:{
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({...formData, userRef: currentUser._id}),
+                body: JSON.stringify({
+                    ...formData,
+                     userRef: currentUser._id
+                    }),
             });
 
             const data = await res.json();
@@ -132,6 +136,7 @@ export default function CreateListing() {
                 setError(data.message)
             }
             navigate(`/listing/${data._id}`)
+           
         } catch (error) {
             setError(error.message);
             setLoading(false);
@@ -155,15 +160,15 @@ export default function CreateListing() {
                         <span>Rent</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.parking} type="checkbox" name="parking" id="parking" className='w-4' />
+                        <input onChange={handleChange} checked={formData.parking} type="checkbox" name="parking" id="parking" className='w-4' />
                         <span>parking</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.furnished} type="checkbox" name="furnished" id="furnished" className='w-4' />
+                        <input onChange={handleChange} checked={formData.furnished} type="checkbox" name="furnished" id="furnished" className='w-4' />
                         <span>Furnished</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.offer} type="checkbox" name="offer" id="offer" className='w-4' />
+                        <input onChange={handleChange} checked={formData.offer} type="checkbox" name="offer" id="offer" className='w-4' />
                         <span>Offer</span>
                     </div>
                 </div>

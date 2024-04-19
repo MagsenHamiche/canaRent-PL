@@ -26,7 +26,7 @@ export default function CreateListing() {
     const [uploading, setUploading] = useState(false);
     const [error, setError]= useState(false);
     const [loading, setLoading] = useState(false);
-    
+   
     const handleImageSubmit = (e)=>{
        if(files.length > 0 && files.length +formData.imageUrls.length < 7){
         setUploading(true);
@@ -94,8 +94,7 @@ export default function CreateListing() {
             setFormData({...formData, [e.target.id]: e.target.value})
         }
      }
-     console.log(formData)
-     
+          
      const handleSubmite= async (e) => {
         e.preventDefault();
         try {
@@ -140,15 +139,15 @@ export default function CreateListing() {
                         <span>Rent</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.parking} type="checkbox" name="parking" id="parking" className='w-4' />
+                        <input onChange={handleChange} checked={formData.parking} type="checkbox" name="parking" id="parking" className='w-4' />
                         <span>parking</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.furnished} type="checkbox" name="furnished" id="furnished" className='w-4' />
+                        <input onChange={handleChange} checked={formData.furnished} type="checkbox" name="furnished" id="furnished" className='w-4' />
                         <span>Furnished</span>
                     </div>
                     <div className='flex gap-2'>
-                        <input onChange={handleChange} value={formData.offer} type="checkbox" name="offer" id="offer" className='w-4' />
+                        <input onChange={handleChange} checked={formData.offer} type="checkbox" name="offer" id="offer" className='w-4' />
                         <span>Offer</span>
                     </div>
                 </div>
