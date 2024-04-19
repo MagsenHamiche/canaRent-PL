@@ -19,7 +19,6 @@ export default function CreateListing() {
         bathrooms: 1,
         regularPrice: 50,
         discountPrice: 0,
-        offer: false,
         parking: false,
         furnished: false,
     });
@@ -103,7 +102,7 @@ export default function CreateListing() {
             setFormData({...formData, type: e.target.id})
         }
 
-        if(e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer'){
+        if(e.target.id === 'parking' || e.target.id === 'furnished'){
             setFormData({...formData, [e.target.id]: e.target.checked})
         }
 
@@ -167,10 +166,7 @@ export default function CreateListing() {
                         <input onChange={handleChange} checked={formData.furnished} type="checkbox" name="furnished" id="furnished" className='w-4' />
                         <span>Furnished</span>
                     </div>
-                    <div className='flex gap-2'>
-                        <input onChange={handleChange} checked={formData.offer} type="checkbox" name="offer" id="offer" className='w-4' />
-                        <span>Offer</span>
-                    </div>
+                    
                 </div>
                 <div className='flex flex-wrap gap-6'>
                     <div className='flex items-center gap-2'>
@@ -188,15 +184,7 @@ export default function CreateListing() {
                             <span className='text-xs'>($ / month)</span>
                         </div>
                     </div>
-                    {formData.offer && (
-                    <div className='flex items-center gap-2'>
-                    <input onChange={handleChange} value={formData.discountPrice} type="number" name="discountPrice" id="discountPrice" required min='0'  max='10000000' className='p-3 border border-gray-300 rounded-lg w-32'/>
-                    <div className="flex flex-col items-center">
-                        <p>Discounted price</p>
-                        <span className='text-xs'>($ / month)</span>
-                    </div>
-                    </div>
-                    )}
+                    
                     
                 </div>
             </div>
