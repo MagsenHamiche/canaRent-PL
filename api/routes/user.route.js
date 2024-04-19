@@ -1,5 +1,5 @@
 import express from "express";
-import { deletUser, test, updateUser, getUserListing } from "../controllers/user.controller.js";
+import { deletUser, test, updateUser, getUserListing, getUser } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
@@ -11,6 +11,8 @@ router.post('/update/:id', verifyToken, updateUser)
 router.delete('/delete/:id', verifyToken, deletUser)
 //acceder a nos publications
 router.get('/listings/:id',verifyToken, getUserListing)
+
+router.get('/:id',verifyToken, getUser)
 
 
 

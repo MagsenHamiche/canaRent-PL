@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
+import Contact from '../components/Contact';
 
 export default function Listing() {
     SwiperCore.use([Navigation]);
@@ -16,7 +17,8 @@ export default function Listing() {
     const [copied, setCopied] = useState(false);
     const [contact, setContact] = useState(false);
     const { currentUser } = useSelector((state) => state.user);
-    useEffect(() => {
+
+   useEffect(() => {
         const fetchListing = async () => {
             try {
                 setLoading(true);
@@ -37,6 +39,7 @@ export default function Listing() {
         }
         fetchListing();
     }, [params.ListingId])
+
   return (
     <main>
         {loading && <p className='text-center ny-7 text-2xl'> Chargement ...</p>}
@@ -104,15 +107,25 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
-            {currentUser && listing.userRef !== currentUser._id && !contact && (
+            {currentUser && listing?.userRef !== currentUser._id && !contact && (
+                
               <button
                 onClick={() => setContact(true)}
                 className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
               >
-                Contact landlord
+                Contacter le proprietaire
               </button>
             )}
-            {contact && <Contact listing={listing} />}
+            {!currentUser && (
+                
+                <p className='text-red-500 bg-slate-300 rounded-lg p-3'>Pour contacter le propritaire vois devez vous authentifier,
+                 et si vous n'avez pas de compte vous devez vous inscrire <Link to='/profile'><p className='text-blue-400 underline hover:no-underline '>Sign In</p></Link></p>
+             )}
+
+            {contact && <Contact listing={listing}/>}
+              
+       
+            
           </div>
         </div>
       )}
