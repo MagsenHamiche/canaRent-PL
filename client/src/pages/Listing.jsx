@@ -121,7 +121,7 @@ export default function Listing() {
             {!currentUser && (
                 
                 <p className='text-red-500 bg-slate-300 rounded-lg p-3'>Pour contacter le propritaire vois devez vous authentifier,
-                 et si vous n'avez pas de compte vous devez vous inscrire <Link to='/profile'><p className='text-blue-400 underline hover:no-underline '>Sign In</p></Link></p>
+                 et si vous n'avez pas de compte vous devez vous inscrire <Link to='/profile'><p className='text-blue-400 underline hover:no-underline '>S'identifier</p></Link></p>
              )}
 
             {contact && <Contact listing={listing}/>}
