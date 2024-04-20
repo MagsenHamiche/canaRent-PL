@@ -5,13 +5,6 @@ import User from '../models/user.model.js'
 import { errorHandler } from '../utils/error.js'
 
 
-
-export const  test = (req,res) => {
-    res.json({
-        message:'hello worlddd',
-    });
-};
-
 export const updateUser = async (req, res, next)=>{
     if(req.user.id !== req.params.id) return next(errorHandler(401, "you can only update your own account!"))
     try {
@@ -37,11 +30,11 @@ export const updateUser = async (req, res, next)=>{
 };
 
 export const deletUser = async (req, res, next)=>{
-    if(req.user.id !== req.params.id) return next(errorHandler(401,'You can only delet your own account'));
+    if(req.user.id !== req.params.id) return next(errorHandler(401,'Vous pouvez supprimer que votre compte'));
     try {
         await User.findByIdAndDelete(req.params.id);
         res.clearCookie('access_token');
-        res.status(200).json('User has been deleted');
+        res.status(200).json('Utilisateur supprimer');
         
     } catch (error) {
         next(error);
@@ -51,7 +44,7 @@ export const deletUser = async (req, res, next)=>{
 export const signOut = async (req, res, next)=>{
     try {
         res.clearCookie('access_token');
-        res.status(200).json('User has been logged Out');
+        res.status(200).json('Utilisateur deconnecter');
     } catch (error) {
         next(error);
     }
@@ -66,7 +59,7 @@ export const getUserListing = async (req, res, next)=>{
             next(error);
         }
     }else{
-        return next(errorHandler(401, 'you can only view your own listing'));
+        return next(errorHandler(401, 'Vous pouvez voir seulement vos publications'));
     }
 };
 

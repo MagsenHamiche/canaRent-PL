@@ -1,10 +1,9 @@
 import express from "express";
-import { deletUser, test, updateUser, getUserListing, getUser } from "../controllers/user.controller.js";
+import { deletUser, updateUser, getUserListing, getUser } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
 
-router.get('/test',test);
 //mise a jour des donnees
 router.post('/update/:id', verifyToken, updateUser)
 //supprimer un compte perso

@@ -18,10 +18,6 @@ const listingSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        discountPrice:{
-            type: String,
-            required: true,
-        },
         bathrooms:{
             type: Number,
             required: true,
@@ -42,10 +38,7 @@ const listingSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        offer:{
-            type: Boolean,
-            required: true,
-        },
+        
         imageUrls:{
             type: Array,
             required: true,

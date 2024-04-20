@@ -31,7 +31,7 @@ export default function OAuth() {
       navigate('/')
 
     } catch (error) {
-      console.log('could not sign in with google', error);
+      console.log('impossible de se connecter avec Google', error);
     }
   };
   return (
@@ -40,7 +40,7 @@ export default function OAuth() {
       type='button'
       className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
     >
-      Continue with google
+      Continuer avec google
     </button>
   );
 }

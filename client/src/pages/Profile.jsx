@@ -156,13 +156,13 @@ export  default function Profile() {
           className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
           <p className='text-sm self-center'>
             {fileUploadError ? 
-              (<span className='text-red-700'>Error Image Upload(image must be less than 2Mo)</span>) 
+              (<span className='text-red-700'>Erreur dans le chargement de l'image(l'image doit avoir moins de 2Mo)</span>) 
               : filePerc > 0 && filePerc < 100 ? 
                 (<span className='text-slate-700'>
                   {`Uploading ${filePerc}%`}
                 </span>)
               : filePerc === 100 ? (
-                  <span className='text-green-700'>Image successfully uploaded!</span>
+                  <span className='text-green-700'>Image ajouter avec success</span>
                   )
               : ""
             }
@@ -174,34 +174,34 @@ export  default function Profile() {
           <input type="password" placeholder='password' className='border p-3 rounded-lg' 
             id='password' onChange={handleChange}/>
           <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>
-            {loading ? 'Loadnig...' : 'Update'}
+            {loading ? 'Chargement...' : 'Mettre a jour'}
           </button>
           <Link className='bg-green-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to={"/create-listing"}>
-            create listing
+            Creer une publication
           </Link>
         </form>
         <div className='flex justify-between mt-5'>
-          <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete Account</span>
-          <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
+          <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Supprimer le compte</span>
+          <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Se deconnecter</span>
         </div>
       
         <p className='text-red-700 mt-5'>
           {error ? error : ''}
         </p>
         <p className='text-green-700 mt-5'>
-          {updateSuccess ? 'User updated successfully' : ''}
+          {updateSuccess ? 'Informations mis a jour avec succes' : ''}
         </p>
       </div>
       <div className=' w-96 mx-auto felx-1'>
         <h1 className='text-3xl font-semibold text-center my-7'>Mes publications</h1>
         <button onClick={handleShowListing} className='text-white w-full bg-slate-400 mt-9 hover:opacity-95 border p-3 rounded-lg min-w-lg'>Afficher mes publications</button>
         <p className='text-red-700 mt-5'>
-          {showListingError ? 'Error show listing' : ''}
+          {showListingError ? 'Erreur dans l\'affichage' : ''}
         </p>
 
         {userListings && userListings.length > 0 && 
         <div className="flex flex-col gap-4">
-          <h1 className='text-center mt-7 text-2xl'>Your listings</h1>
+          <h1 className='text-center mt-7 text-2xl'>Mes publications</h1>
           {userListings.map((listing) => (
           <div key={listing._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
             <Link to={`/listing/${listing._id}`}>
@@ -211,9 +211,9 @@ export  default function Profile() {
               <p>{listing.name}</p>
             </Link>
             <div className="flex flex-col items-center ">
-              <button onClick={()=> HandleListingDelete(listing._id)} className='text-red-700 uppercase hover:underline'>Delete</button>
+              <button onClick={()=> HandleListingDelete(listing._id)} className='text-red-700 uppercase hover:underline'>Supprimer</button>
               <Link to={`/update-listing/${listing._id}`} >
-                <button className='text-green-700 uppercase hover:underline'>Edit</button>
+                <button className='text-green-700 uppercase hover:underline'>Editer</button>
               </Link>
                   
             </div>

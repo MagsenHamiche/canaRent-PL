@@ -62,15 +62,15 @@ export default function Header() {
         </form>
         <ul className='flex gap-4'>
             <Link to='/'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>            
+                <li className='hidden sm:inline text-slate-700 hover:underline'>Accueil</li>            
             </Link>
 
             <Link to='/about'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
+                <li className='hidden sm:inline text-slate-700 hover:underline'>À propos</li>
             </Link>
             <li>
                 {currentUser && (
-                    <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
+                    <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Se deconnecter</span>
                 )}
             </li>
             <Link to='/profile'>
